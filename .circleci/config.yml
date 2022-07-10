@@ -212,8 +212,8 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - run: yum install -y aws-cli
-      - run: yum install -y npm
+      - run: apk add --update aws-cli
+      - run: apk add --update npm
       - run:
           name: Get Backend URL
           command: |
