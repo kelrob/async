@@ -213,6 +213,7 @@ jobs:
     steps:
       - checkout
       - run: apk add --update npm
+      - run: apk add --update aws-cli
       - run:
           name: Get Backend URL
           command: |
@@ -235,7 +236,7 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: alpine:latest
+      - image: amazon/aws-cli
     steps:
       - checkout
       - add_ssh_keys:
@@ -243,13 +244,12 @@ jobs:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
-      - run: apk add --update aws-cli
-      - run: apk add --update tar gzip nodejs npm
+      - run: yum install -y  tar gzip nodejs npm
       - run:
           name: Deploy Backend
           command: |
             cd backend
-            npm i
+            npm install
             npm run build
             cd ..
             # Zip the directory
