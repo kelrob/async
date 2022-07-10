@@ -209,11 +209,10 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: alpine:latest
     steps:
       - checkout
-      - run: yum install -y python
-      - run: yum install -y npm
+      - run: apk add --update npm
       - run:
           name: Get Backend URL
           command: |
