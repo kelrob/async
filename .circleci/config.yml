@@ -209,12 +209,10 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - run: yum install -y python
-      - run: yum install -y epel-release
-      - run: yum install -y ansible
+      - run: yum install -y aws-cli
       - run: yum install -y npm
       - run:
           name: Get Backend URL
@@ -246,7 +244,8 @@ jobs:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
-      - run: apk add --update tar gzip nodejs npm aws-cli
+      - run: apk add --update aws-cli
+      - run: apk add --update tar gzip nodejs npm
       - run:
           name: Deploy Backend
           command: |
