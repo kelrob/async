@@ -212,9 +212,10 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run: yum install -y python
-      - run: yum install -y ansible
-      - run: yum install -y npm
+      - run: sudo yum install -y python
+      - run: sudo yum install epel-release
+      - run: sudo yum install -y ansible
+      - run: sudo yum install -y npm
       - run:
           name: Get Backend URL
           command: |
