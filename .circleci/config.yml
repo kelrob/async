@@ -236,15 +236,15 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
           fingerprint:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
-      - run: yum install -y epel-release
-      - run: yum install -y  tar gzip
-      - run: yum install -y  nodejs npm
+      - run: apk add --update  tar gzip
+      - run: apk add --update  nodejs npm
+      - run: pip install awscli
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
 
