@@ -162,7 +162,7 @@ jobs:
             --tags project=udapeople
       - run:
           name: Get Public IP Address of EC2 instance
-          run: |
+          command: |
             aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text >> inventory.txt
