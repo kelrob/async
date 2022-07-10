@@ -213,7 +213,7 @@ jobs:
     steps:
       - checkout
       - run: yum install -y python
-      - run: yum install epel-release
+      - run: yum install -y epel-release
       - run: yum install -y ansible
       - run: yum install -y npm
       - run:
