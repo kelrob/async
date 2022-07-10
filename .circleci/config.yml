@@ -212,8 +212,8 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - run: apk add --update aws-cli
-      - run: apk add --update npm
+      - run: apk add --no-cache aws-cli
+      - run: apk add --no-cache npm
       - run:
           name: Get Backend URL
           command: |
@@ -244,7 +244,7 @@ jobs:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
-      - run: apk add --update aws-cli
+      - run: apk add --no-cache aws-cli
       - run: apk add --update tar gzip nodejs npm
       - run:
           name: Deploy Backend
