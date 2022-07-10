@@ -245,8 +245,7 @@ jobs:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
-      - run: apk add --update tar gzip nodejs npm
-      - run: apk add  --no-cache aws-cli
+      - run: apk add --update tar gzip nodejs npm aws-cli
       - run:
           name: Deploy Backend
           command: |
