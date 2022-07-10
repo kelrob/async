@@ -189,4 +189,6 @@ workflows:
           requires: [build-backend]
       - notify
       - deploy-infrastructure:
-          requires: [scan-frontend, scan-backend]
+          requires:
+            - scan-frontend
+            - scan-backend
