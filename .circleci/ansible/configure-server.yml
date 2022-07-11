@@ -15,10 +15,10 @@
     - name:
       command: sleep 700
     - name:
-        command: apt update
-          apt install software-properties-common
-          add-apt-repository ppa:deadsnakes/ppa
-          apt install python3.9
+      command: apt update
+        apt install software-properties-common
+        add-apt-repository ppa:deadsnakes/ppa
+        apt install python3.9
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
