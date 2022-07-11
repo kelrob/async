@@ -186,6 +186,7 @@ jobs:
       - run: apk add --update tar gzip
       - run: apk add --update ansible
       - run: pip install awscli
+      - run: cat  .circleci/ansible/inventory.txt
       - run:
           name: Configure Infrastructure
           command: |
