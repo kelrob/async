@@ -182,8 +182,9 @@ jobs:
       - attach_workspace:
           at: ~/
 
-      - run: apk add --update tar gzip  aws-cli
+      - run: apk add --update tar gzip
       - run: apk add --update ansible
+      - run: pip install awscli
       - run:
           name: Configure Infrastructure
           command: |
