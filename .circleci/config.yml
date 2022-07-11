@@ -180,14 +180,14 @@ jobs:
           fingerprint:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
-          at: project/.circleci/ansible/inventory.txt
+          at: ~/
 
       - run: apk add --update tar gzip  aws-cli
       - run: apk add --update ansible
       - run:
           name: Configure Infrastructure
           command: |
-            ansible-playbook -i inventory.txt configure-server.yml
+            ansible-playbook -i project/.circleci/ansible/inventory.txt configure-server.yml
   run-migrations:
     docker:
       - image: circleci/node:13.8.0
@@ -246,7 +246,7 @@ jobs:
       - run: apk add --update  nodejs npm
       - run: pip install awscli
       - attach_workspace:
-          at: project/.circleci/ansible/inventory.txt
+          at: ~/
       - run: apk add --update ansible
 
       - run:
@@ -260,7 +260,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
-            cat inventory.txt
+            cat project/.circleci/ansible/inventory.txt
             ansible-playbook -i project/.circleci/ansible/inventory.txt deploy-backend.yml
       - destroy-environment
 
@@ -284,7 +284,11 @@ workflows:
           requires:
             - scan-frontend
             - scan-backend
+      -configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
       - deploy-frontend:
-          requires: [deploy-infrastructure]
+          requires: [run-migrations]
       - deploy-backend:
-          requires: [deploy-infrastructure]
+          requires: [run-migrations]
