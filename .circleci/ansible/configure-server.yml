@@ -12,8 +12,8 @@
     - ansible_stdout_callback: yaml
 
   pre_tasks:
-    - pause:
-        minutes: 10
+    - name:
+      command: sleep 120
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
