@@ -178,7 +178,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprint:
+          fingerprints:
             - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
       - attach_workspace:
           at: ~/
@@ -186,7 +186,7 @@ jobs:
       - run: apk add --update tar gzip
       - run: apk add --update ansible
       - run: pip install awscli
-      - run: cat  .circleci/ansible/inventory.txt
+      - run: cat .circleci/ansible/inventory.txt
       - run:
           name: Configure Infrastructure
           command: |
