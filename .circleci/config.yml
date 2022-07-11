@@ -268,7 +268,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
-            ansible-playbook -i inventory.txt deploy-backend.yml
+            ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
       - destroy-environment
 
   smoke-test:
