@@ -247,6 +247,7 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
+      - run: apk add --update openssh-client git
       - add_ssh_keys:
           fingerprints:
             - "6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"
@@ -268,6 +269,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
+            cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
       - destroy-environment
 
