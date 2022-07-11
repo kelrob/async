@@ -13,7 +13,7 @@
 
   pre_tasks:
     - name:
-      command: sleep 700
+      command: sleep 400
     - name:
       command: apt update
         apt install software-properties-common
