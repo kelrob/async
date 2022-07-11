@@ -189,6 +189,7 @@ jobs:
       - run:
           name: Configure Infrastructure
           command: |
+            export PYTHONUNBUFFERED=1
             ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/configure-server.yml
       - destroy-environment
   run-migrations:
