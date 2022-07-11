@@ -180,7 +180,7 @@ jobs:
       - run: apk add --update openssh-client git
       - add_ssh_keys:
           fingerprints:
-            - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
+            - "1b:02:38:b5:5b:0d:c8:1c:d1:d7:59:1b:50:ad:dc:53"
       - attach_workspace:
           at: ~/
 
@@ -245,8 +245,8 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprint:
-            - "f6:6b:1a:11:59:e3:32:eb:26:f5:2c:3c:73:cb:5d:91"
+          fingerprints:
+            - "1b:02:38:b5:5b:0d:c8:1c:d1:d7:59:1b:50:ad:dc:53"
       - run: apk add --update  tar gzip
       - run: apk add --update  nodejs npm
       - run: pip install awscli
