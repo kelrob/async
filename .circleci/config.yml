@@ -16,6 +16,7 @@ commands:
           name: Destroy Frontend environment
           when: on_fail
           command: |
+            aws s3 rm udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             aws cloudformation delete-stack \
             --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
 
