@@ -179,8 +179,7 @@ jobs:
       - checkout
       - run: apk add --update openssh-client git
       - add_ssh_keys:
-          fingerprints:
-            - "6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"
+          fingerprints: ["6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"]
       - attach_workspace:
           at: ~/
 
