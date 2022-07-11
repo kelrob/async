@@ -274,7 +274,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - artifact.tar.gz
+            - project/.circleci/ansible/roles/deploy/files/artifact.tar.gz
       - destroy-environment
 
   smoke-test:
