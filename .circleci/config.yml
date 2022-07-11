@@ -271,6 +271,10 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/.circleci/ansible/files/artifact.tar.gz
       - destroy-environment
 
   smoke-test:
