@@ -247,6 +247,7 @@ jobs:
       - run: pip install awscli
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
+      - run: apk add --update ansible
 
       - run:
           name: Deploy Backend
@@ -260,7 +261,7 @@ jobs:
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml
+            ansible-playbook -i project/.circleci/ansible/inventory.txt deploy-backend.yml
       - destroy-environment
 
 workflows:
