@@ -13,7 +13,7 @@
 
   pre_tasks:
     - name:
-      command: sleep 600
+      command: sleep 700
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
