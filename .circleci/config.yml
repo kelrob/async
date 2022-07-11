@@ -16,7 +16,7 @@ commands:
           name: Destroy Frontend environment
           when: on_fail
           command: |
-            aws s3 rm udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+            aws s3 rm s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             aws cloudformation delete-stack \
             --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
 
@@ -180,7 +180,8 @@ jobs:
       - checkout
       - run: apk add --update openssh-client git
       - add_ssh_keys:
-          fingerprints: ["6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"]
+          fingerprints:
+            - "6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"
       - attach_workspace:
           at: ~/
 
@@ -190,7 +191,7 @@ jobs:
       - run:
           name: Configure Infrastructure
           command: |
-            ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i .circleci/ansible/inventory.txt .circleci/ansible/configure-server.yml
+            ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/configure-server.yml
       - destroy-environment
   run-migrations:
     docker:
