@@ -8,6 +8,7 @@
 - unarchive:
     src: ~/artifact.tar.gz
     dest: ~/
+    remote_src: true
 
 - name: Start Modules
   become: true
