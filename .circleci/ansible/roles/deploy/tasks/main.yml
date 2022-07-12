@@ -1,7 +1,7 @@
 ---
 - name: Copy artifact.tar.gz to EC2
   copy:
-    src: files/artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/
 
 - name: "Extract Artifact"
