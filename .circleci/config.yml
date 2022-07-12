@@ -275,10 +275,10 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/artifact.tar.gz
+      # - persist_to_workspace:
+      #     root: ~/
+      #     paths:
+      #       - project/artifact.tar.gz
 
       - destroy-environment
 
@@ -289,6 +289,7 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
+      - run: apk add --update openssh-client git
       - run:
           name: Install dependencies
           command: |
