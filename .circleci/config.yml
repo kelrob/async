@@ -268,13 +268,17 @@ jobs:
             # Zip the directory
             tar -C backend -czvf artifact.tar.gz .
             pwd
-            mkdir ~/project/.circleci/ansible/roles/deploy/files
-            cp artifact.tar.gz ~/project/.circleci/ansible/roles/deploy/files/
+            # mkdir ~/project/.circleci/ansible/roles/deploy/files
+            # cp artifact.tar.gz ~/project/.circleci/ansible/roles/deploy/files/
             ls -lh
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/artifact.tar.gz
 
       - destroy-environment
 
