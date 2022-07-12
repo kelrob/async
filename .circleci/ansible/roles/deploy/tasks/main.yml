@@ -2,11 +2,11 @@
 - name: Copy artifact.tar.gz to EC2
   become: true
   copy:
-    src: artifact.tar.gz
+    src: files/artifact.tar.gz
     dest: ~/
 
 - unarchive:
-    src: files/artifact.tar.gz
+    src: ~/artifact.tar.gz
     dest: ~/
     remote_src: true
 
