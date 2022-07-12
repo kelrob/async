@@ -5,12 +5,8 @@
     src: artifact.tar.gz
     dest: ~/
 
-- name: check working directory
-  become: true
-  shell: pwd
-    ls
 - unarchive:
-    src: artifact.tar.gz
+    src: files/artifact.tar.gz
     dest: ~/
     remote_src: true
 
