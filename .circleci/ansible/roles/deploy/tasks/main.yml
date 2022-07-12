@@ -10,7 +10,7 @@
   shell: pwd
     ls
 - unarchive:
-    src: files/artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/
     remote_src: true
 
