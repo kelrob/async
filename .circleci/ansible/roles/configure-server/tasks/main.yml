@@ -9,7 +9,7 @@
   apt:
     upgrade: yes
 
-- name: "Install dependencies"
+- name: "Install server dependencies"
   become: true
   apt:
     name: ["nodejs", "npm"]
