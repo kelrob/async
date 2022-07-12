@@ -10,6 +10,11 @@
     dest: ~/
     remote_src: true
 
+- name: check working directory
+  become: true
+  shell: pwd
+    ls
+
 - name: Start Modules
   become: true
   shell: npm install
