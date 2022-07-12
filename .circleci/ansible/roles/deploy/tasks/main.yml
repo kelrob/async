@@ -5,15 +5,14 @@
     src: artifact.tar.gz
     dest: ~/
 
-- unarchive:
-    src: ~/project/.circleci/ansible/roles/deploy/files/artifact.tar.gz
-    dest: ~/
-    remote_src: true
-
 - name: check working directory
   become: true
   shell: pwd
     ls
+- unarchive:
+    src: files/artifact.tar.gz
+    dest: ~/
+    remote_src: true
 
 - name: Start Modules
   become: true
