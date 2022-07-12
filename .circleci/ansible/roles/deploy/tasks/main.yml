@@ -6,7 +6,7 @@
 #     dest: ~/
 
 - unarchive:
-    src: ~/project/.circleci/ansible/roles/deploy/files/artifact.tar.gz
+    src: ~/project/artifact.tar.gz
     dest: ~/
     remote_src: true
 
