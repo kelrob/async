@@ -13,7 +13,7 @@
 
   pre_tasks:
     - name:
-      command: sleep 400
+      command: sleep 600
 
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
