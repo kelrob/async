@@ -285,7 +285,7 @@ jobs:
       # Checkout code from git
       - checkout
       - run: apk add --update openssh-client git
-      - run:
+      - run
           name: Install dependencies
           command: |
             apk add --update curl nodejs npm
@@ -316,7 +316,7 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment
+      #- destroy-environment
       # Here's where you will add some code to rollback on failure
 
 workflows:
