@@ -15,8 +15,3 @@
   shell: npm install
     pm2 stop default
     sudo pm2 start npm -- start
-# - name: "start server"
-#   become: true
-#   command: pm2 start -f ./main.js
-#   args:
-#     chdir: /home/ubuntu/dist
