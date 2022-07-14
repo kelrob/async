@@ -211,7 +211,7 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-            curl -k https://kvdb.io/YRjnJbpJUHio8N1NyCs9bd/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+            curl https://kvdb.io/YRjnJbpJUHio8N1NyCs9bd/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
       - destroy-environment
 
@@ -275,11 +275,6 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
-      # - persist_to_workspace:
-      #     root: ~/
-      #     paths:
-      #       - project/artifact.tar.gz
-
       - destroy-environment
 
   smoke-test:
