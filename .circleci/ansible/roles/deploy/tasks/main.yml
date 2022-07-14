@@ -14,4 +14,4 @@
   become: true
   shell: npm install
     sudo pm2 stop default
-    sudo pm2 start ~/dist/main.js -f
+    sudo pm2 start npm -- start
