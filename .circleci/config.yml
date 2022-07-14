@@ -1,6 +1,6 @@
 version: 2.1
-orbs:
-  slack: circleci/slack@4.1
+# orbs:
+#   slack: circleci/slack@4.1
 
 commands:
   destroy-environment:
@@ -40,17 +40,17 @@ commands:
             fi
 
 jobs:
-  notify:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - slack/notify:
-          event: fail
-          mentions: "@channel"
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
+  # notify:
+  #   docker:
+  #     - image: "cimg/base:stable"
+  #   steps:
+      # - slack/notify:
+      #     event: fail
+      #     mentions: "@channel"
+      #     template: basic_fail_1
+      # - slack/notify:
+      #     event: pass
+      #     template: success_tagged_deploy_1
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -181,7 +181,7 @@ jobs:
       - run: apk add --update openssh-client git
       - add_ssh_keys:
           fingerprints:
-            - "6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"
+            - "1f:a9:1e:34:55:23:f5:ff:a6:73:de:50:8c:59:05:cc"
       - attach_workspace:
           at: ~/
 
@@ -250,7 +250,7 @@ jobs:
       - run: apk add --update openssh-client git rsync
       - add_ssh_keys:
           fingerprints:
-            - "6a:0c:ab:bd:dd:6f:d0:a0:d0:2f:8c:c2:44:8b:14:12"
+            - "1f:a9:1e:34:55:23:f5:ff:a6:73:de:50:8c:59:05:cc"
       - run: apk add --update  tar gzip
       - run: apk add --update  nodejs npm
       - run: pip install awscli
@@ -273,7 +273,7 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i inventory.txt deploy-backend.yml
-      - destroy-environment
+      # - destroy-environment
 
   smoke-test:
     docker:
@@ -331,7 +331,7 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - notify
+      # - notify
       - deploy-infrastructure:
           requires:
             - scan-frontend
