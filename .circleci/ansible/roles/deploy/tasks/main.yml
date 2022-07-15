@@ -1,14 +1,19 @@
 ---
-- name: "copy artifact into the server"
-  become: true
-  copy:
-    src: files/artifact.tar.gz
-    dest: ~/
+# - name: "copy artifact into the server"
+#   become: true
+#   copy:
+#     src: files/artifact.tar.gz
+#     dest: ~/
 
-- name: extract zipped artifact and install dependancies
-  become: true
-  shell: |
-    tar -xvzf ~/artifact.tar.gz
+# - name: extract zipped artifact and install dependancies
+#   become: true
+#   shell: |
+#     tar -xvzf ~/artifact.tar.gz
+
+- name: "Extract artifact to EC2"
+  unarchive:
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu
 
 - name: Start Modules
   become: true
