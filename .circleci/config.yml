@@ -76,6 +76,21 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
+          name: Save environment variables
+          command: |
+            cat \<< EOF > backend/.env
+            ENVIRONMENT=production
+            TYPEORM_CONNECTION=postgres
+            TYPEORM_MIGRATIONS_DIR=./src/migrations
+            TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
+            TYPEORM_MIGRATIONS=./src/migrations/*.ts
+            TYPEORM_HOST=${TYPEORM_HOST}
+            TYPEORM_PORT=${TYPEORM_PORT}
+            TYPEORM_USERNAME=${TYPEORM_USERNAME}
+            TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
+            TYPEORM_DATABASE=${TYPEORM_DATABASE}
+            EOF
+      - run:
           name: Back-end build
           command: |
             cd backend
@@ -201,7 +216,22 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-build]     
+          keys: [backend-build]   
+      - run:
+          name: Save environment variables
+          command: |
+            cat \<< EOF > backend/.env
+            ENVIRONMENT=production
+            TYPEORM_CONNECTION=postgres
+            TYPEORM_MIGRATIONS_DIR=./src/migrations
+            TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
+            TYPEORM_MIGRATIONS=./src/migrations/*.ts
+            TYPEORM_HOST=${TYPEORM_HOST}
+            TYPEORM_PORT=${TYPEORM_PORT}
+            TYPEORM_USERNAME=${TYPEORM_USERNAME}
+            TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
+            TYPEORM_DATABASE=${TYPEORM_DATABASE}
+            EOF  
       - run:
           name: Run migrations
           command: |
