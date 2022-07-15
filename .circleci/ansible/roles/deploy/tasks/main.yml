@@ -12,9 +12,11 @@
 
 - name: Start Modules
   become: true
-  shell: npm install
+  shell: | 
+    npm install
     sudo pm2 stop default
     sudo pm2 start npm -- start
+
   environment:
     ENVIRONMENT: production
     TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
