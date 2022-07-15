@@ -332,7 +332,7 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - notify
+      # - notify
       - deploy-infrastructure:
           requires:
             - scan-frontend
