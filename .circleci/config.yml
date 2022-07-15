@@ -174,28 +174,28 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
       - destroy-environment
-
   configure-infrastructure:
     docker:
       - image: python:3.7-alpine3.16
     steps:
       - checkout
+      - run: apk add --update openssh-client git
       - add_ssh_keys:
-          fingerprints: ["a0:a8:48:33:09:5e:f1:97:07:41:23:a7:9d:db:d3:6c"]
+          fingerprints:
+            - "fd:5a:49:de:e1:94:5c:d8:59:ab:57:83:76:c9:cf:69"
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible
-            apk add --no-cache aws-cli
-      - run:
-          name: Configure server
-          command: |
-            cd .circleci/ansible
-            ansible-playbook -i inventory.txt configure-server.yml -vvv
-      - destroy-environment
 
+      - run: apk add --update tar gzip
+      - run: apk add --update ansible
+      - run: pip install awscli
+      - run:
+          name: Configure Infrastructure
+          command: |
+            ansible-playbook --ssh-common-args='-o StrictHostKeyChecking=no' -i .circleci/ansible/inventory.txt .circleci/ansible/configure-server.yml
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
+      - destroy-environment
   run-migrations:
     docker:
       - image: circleci/node:13.8.0
